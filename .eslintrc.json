@@ -1,3 +1,67 @@
 {
-  "extends": "next/core-web-vitals"
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": 0,
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-unused-vars": "off",
+        "arrow-spacing": [
+            "warn",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "max-len": [
+            "warn",
+            {
+                "code": 100,
+                "ignoreRegExpLiterals": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreStrings": true,
+                "ignoreTrailingComments": true,
+                "ignoreComments": true
+            }
+        ],
+        "object-curly-spacing": [
+            "warn",
+            "always"
+        ],
+        "no-undef": [
+            "warn"
+        ],
+        "react/react-in-jsx-scope": 0
+    }
 }
