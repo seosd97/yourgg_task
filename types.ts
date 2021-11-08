@@ -1,4 +1,4 @@
-import { LaneType, MatchCategoryType } from "./src/constants";
+import { LaneType, MatchCategoryType } from './src/constants';
 
 export interface Profile {
   name: string;

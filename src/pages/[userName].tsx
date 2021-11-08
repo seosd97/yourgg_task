@@ -1,11 +1,11 @@
 import { Fragment, useEffect, useMemo, useState } from 'react';
 
 import Head from 'next/head';
-import { LaneType, MatchCategoryType } from '../constants';
+import { MatchCategoryType } from '../constants';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import api from '../api';
-import { ChampionStat, LaneStat, Profile } from '../../types';
+import { Profile } from '../../types';
 import MostPlayList from '../components/MostPlayList';
 
 const Profile: NextPage = () => {
