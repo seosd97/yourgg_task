@@ -17,7 +17,18 @@ const getUserProfile = async (
 
   const res = await axios.get<Profile>(`${API_ENDPOINT}/${name}`, { params });
 
-  return res.data;
+  return {
+    name: res.data.name,
+    role: res.data.role,
+    laning: res.data.laning,
+    kda: res.data.kda,
+    winRate: res.data.winRate,
+    lane: res.data.lane,
+    mostLane: res.data.mostLane,
+    mostLanes: res.data.mostLanes,
+    mostChampions: res.data.mostChampions,
+    matchCategory: res.data.matchCategory,
+  };
 };
 
 export default {
