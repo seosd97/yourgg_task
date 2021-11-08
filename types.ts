@@ -1,19 +1,21 @@
+import { LaneType, MatchCategoryType } from "./src/constants";
+
 export interface Profile {
   name: string;
   role: number;
   laning: number;
   kda: number;
   winRate: number;
-  lane: string;
+  lane: LaneType;
   mostLane: number;
   mostLanes: LaneStat[];
   mostChampions: ChampionStat[];
-  matchCategory: string;
+  matchCategory: MatchCategoryType;
 }
 
 export interface LaneStat {
   kda: number;
-  lane: string;
+  lane: LaneType;
   laning: number;
   matchCount: number;
   pickRate: number;
@@ -27,7 +29,7 @@ export interface ChampionStat {
   imageUrl: string;
   name: string;
   kda: number;
-  lane: string;
+  lane: LaneType;
   laning: number;
   matchCount: number;
   pickRate: number;

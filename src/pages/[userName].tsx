@@ -24,8 +24,6 @@ const Profile: NextPage = () => {
     matchTypeFilter,
     setMatchTypeFilter,
   ] = useState<MatchCategoryType>(MatchCategoryType.SoloRank);
-  const [selectedLane, setSelectedLane] = useState<LaneType>(LaneType.Top);
-  const [selectedChamp, setSelectedChamp] = useState<string | null>(null);
   const [profileData, setProfileData] = useState<Profile | null>(null);
 
   useEffect(() => {

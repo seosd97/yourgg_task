@@ -1,22 +1,22 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
-import styles from '../styles/Home.module.css';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 const Index: NextPage = () => {
   const router = useRouter();
 
+  useEffect(() => {
+    router.replace('/hide on bush');
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>your.gg interview task</title>
         <meta name="description" content="your.gg interview task" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-      </main>
     </div>
   );
 };

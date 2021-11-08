@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
-import withSass from '@zeit/next-sass';
 
-export default {
+module.exports = {
   reactStrictMode: true,
-  ...withSass(),
+  images: {
+    domains: ['ddragon.leagueoflegends.com'],
+  },
 };

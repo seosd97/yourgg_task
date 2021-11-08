@@ -51,3 +51,100 @@ main {
   line-height: 15px;
   color: $black;
 }
+.most-play-list-container {
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+.most-play-list-col-title {
+  width: 106px;
+  margin-left: 15px;
+}
+
+.most-play-list-col-winrate {
+  width: 43px;
+  text-align: center;
+}
+
+.most-play-list-col-sub-stat {
+  width: 43px;
+  text-align: center;
+}
+
+.most-play-list-col-text {
+  font-size: 10px;
+  line-height: 13.63px;
+  color: $black;
+}
+
+.most-play-item-main {
+  width: 63px;
+}
+
+.most-play-item-lane-text {
+  font-size: 12px;
+  line-height: 16.32px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.most-play-item-games-text {
+  font-size: 10px;
+  line-height: 13.62px;
+}
+
+.most-play-item-winrate {
+  width: 45px;
+  text-align: center;
+}
+
+.most-play-item-sub-stat {
+  width: 42px;
+  text-align: center;
+}
+
+.most-play-item-container {
+  padding: 4px 14px;
+  margin-bottom: 6px;
+  border: 1px dashed transparent;
+  align-items: center;
+}
+
+.most-play-item-container:hover, .most-play-item-container.selected {
+  border: 1px dashed $border;
+  border-radius: 6px;
+}
+
+.most-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: $gray;
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+  margin-right: 10px;
+}
+
+.most-item-sub-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: $black;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.invert-img {
+  filter: invert(1);
+}
+
+.img-border {
+  border-radius: 2px;
+}
