@@ -5,7 +5,7 @@ import { LaneType, MatchCategoryType } from '../constants';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import api from '../api';
-import { Profile } from '../../types';
+import { ChampionStat, LaneStat, Profile } from '../../types';
 
 const Profile: NextPage = () => {
   const router = useRouter();
@@ -48,15 +48,23 @@ const Profile: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <b>{profileData?.name ? profileData.name : userName}</b>
-      <div>{matchTypeFilter}</div>
-      {
-        profileData ? (
-          <Fragment>
-
-          </Fragment>
-        ) : null
-      }
+      <header>
+        <h1 className="title-name">{profileData?.name ? profileData.name : userName}</h1>
+        <div>{matchTypeFilter}</div>
+      </header>
+      <main>
+        {
+          profileData ? (
+            <Fragment>
+              <div>
+                <div><span>{profileData.role.toFixed(2)}</span>인분</div>
+                <div><span>{`${profileData.laning.toFixed(1)}:${(10 - profileData.laning).toFixed(1)}`}</span>라인전</div>
+                <div><span>{profileData.kda}</span>KDA</div>
+              </div>
+            </Fragment>
+          ) : null
+        }
+      </main>
     </div>
   );
 };
