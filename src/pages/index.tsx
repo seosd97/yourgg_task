@@ -1,22 +1,24 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import type { NextPage } from 'next';
 import styles from '../styles/Home.module.css';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-const Home: NextPage = () => {
+const Index: NextPage = () => {
+  const router = useRouter();
+
   return (
     <div className={styles.container}>
       <Head>
         <title>your.gg interview task</title>
-        <meta name="description" content="your.gg interview task - hide on bush stat" />
+        <meta name="description" content="your.gg interview task" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <b>HIDE ON BUSH</b>
       </main>
     </div>
   );
 };
 
-export default Home;
+export default Index;

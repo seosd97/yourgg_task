@@ -1,5 +1,7 @@
+export const DEFAULT_USER_NAME = 'Hide on bush';
+
 export enum MatchCategoryType {
-  NORMAL = 'Normal',
-  SOLORANK = 'SoloRank',
-  FREERANK = 'FreeRank',
+  Normal = 'Normal',
+  SoloRank = 'SoloRank',
+  FreeRank = 'FreeRank',
 }
