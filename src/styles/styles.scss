@@ -1,6 +1,53 @@
 @import './Colors.scss';
 
-.title-name {
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+main {
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.title-user-name {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 65.38px;
   color: $black;
-  margin-top: 30px;
+  margin: 0;
+}
+
+.main-stat-container {
+  width: 100%;
+  justify-content: flex-start;
+  align-content: flex-start;
+  padding: 51px 0;
+  border-bottom: 1px solid $border;
+}
+
+.main-stat-set {
+  display: flex;
+  align-items: center;
+}
+
+.main-stat-val {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 22px;
+  min-width: 68px;
+  color: $black;
+}
+
+.main-stat-desc {
+  font-size: 11px;
+  line-height: 15px;
+  color: $black;
 }

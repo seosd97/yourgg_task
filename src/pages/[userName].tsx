@@ -6,6 +6,7 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import api from '../api';
 import { ChampionStat, LaneStat, Profile } from '../../types';
+import MostPlayList from '../components/MostPlayList';
 
 const Profile: NextPage = () => {
   const router = useRouter();
@@ -48,19 +49,34 @@ const Profile: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <header>
-        <h1 className="title-name">{profileData?.name ? profileData.name : userName}</h1>
-        <div>{matchTypeFilter}</div>
-      </header>
-      <main>
+      <main className="main-container flex-col">
+        <section>
+          <h1 className="title-user-name">{profileData?.name ? profileData.name : userName}</h1>
+          <div>{matchTypeFilter}</div>
+        </section>
         {
           profileData ? (
             <Fragment>
-              <div>
-                <div><span>{profileData.role.toFixed(2)}</span>인분</div>
-                <div><span>{`${profileData.laning.toFixed(1)}:${(10 - profileData.laning).toFixed(1)}`}</span>라인전</div>
-                <div><span>{profileData.kda}</span>KDA</div>
-              </div>
+              <section className="main-stat-container">
+                <div>
+                  <div className="main-stat-set flex-row">
+                    <span className="main-stat-val">{profileData.role.toFixed(2)}</span>
+                    <span className="main-stat-desc">인분</span>
+                  </div>
+                  <div className="main-stat-set flex-row">
+                    <span className="main-stat-val">{`${profileData.laning.toFixed(1)}:${(10 - profileData.laning).toFixed(1)}`}</span>
+                    <span className="main-stat-desc">라인전</span>
+                  </div>
+                  <div className="main-stat-set flex-row">
+                    <span className="main-stat-val">{profileData.kda}</span>
+                    <span className="main-stat-desc">KDA</span>
+                  </div>
+                </div>
+              </section>
+              <MostPlayList
+                mostLanes={profileData.mostLanes}
+                mostChampions={profileData.mostChampions}
+              />
             </Fragment>
           ) : null
         }
