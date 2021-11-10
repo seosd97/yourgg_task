@@ -31,35 +31,28 @@ const Profile: NextPage = () => {
   const championFilter = router?.query?.champion as string ?? null;
 
   const [profileData, setProfileData] = useState<Profile | null>(null);
-  const [isLoadingProfile, setIsLoadingProfile] = useState<boolean>(false);
-  const [, setIsUpdatingProfile] = useState<boolean>(false);
 
   useEffect(() => {
     if (router.isReady) {
-      setIsLoadingProfile(true);
       (async () => {
-        const data: Profile = await api.profile.getUserProfile(userName, matchTypeFilter);
-        setProfileData(data);
-        setIsLoadingProfile(false);
+        try {
+          const data: Profile
+          = await api.profile.getUserProfile(userName, matchTypeFilter, laneFilter, championFilter);
+          
+          setProfileData(data);
+        } catch (err) {
+          router.replace('/404');
+        }
       })();
     }
-  }, [router.isReady, userName, matchTypeFilter]);
+  }, [router.isReady, userName, matchTypeFilter, laneFilter, championFilter]);
 
   const onChangeMostItem = useCallback(async (lane: LaneType, champion?: string) => {
-    setIsUpdatingProfile(true);
-    const data: Profile
-      = await api.profile.getUserProfile(userName, matchTypeFilter, lane, champion);
-
-    setProfileData(data);
-    setIsUpdatingProfile(false);
-  }, [userName, matchTypeFilter]);
-
-  const onChangeMatchType = useCallback((option: DropdownOption) => {
     const params = {
-      ...(router?.query != null ? router.query : {}),
-      matchType: option.value,
+      ...(router?.query?.matchType != null ? { matchType: router.query.matchType } : {}),
+      lane: lane.toString(),
+      ...(champion != null ? { champion } : {}),
     };
-    console.log(params);
 
     router.push({
       pathname: `/${userName}`,
@@ -69,7 +62,23 @@ const Profile: NextPage = () => {
     { shallow: true });
   }, [router?.query, userName]);
 
-  const isProfileLoaded = !isLoadingProfile && profileData;
+  const onChangeMatchType = useCallback((option: DropdownOption) => {
+    const params = {
+      matchType: option.value,
+      ...(router?.query?.champion != null ? { champion: router.query.champion } : {}),
+      ...(router?.query?.lane != null ? { lane: router.query.lane } : {}),
+    };
+    
+    setProfileData(null);
+    router.push({
+      pathname: `/${userName}`,
+      query: params,
+    },
+    undefined,
+    { shallow: true });
+  }, [router?.query, userName]);
+
+  const isProfileLoaded = profileData != null;
 
   return (
     <div>
