@@ -7,6 +7,8 @@ import { useRouter } from 'next/router';
 import api from '../api';
 import { Profile } from '../../types';
 import MostPlayList from '../components/MostPlayList';
+import MostItemSkeleton from '../components/MostItemSkeleton';
+import MainStatSkeleton from '../components/MainStatSkeleton';
 
 const Profile: NextPage = () => {
   const router = useRouter();
@@ -54,6 +56,8 @@ const Profile: NextPage = () => {
     setIsUpdatingProfile(false);
   }, [userName, matchTypeFilter]);
 
+  const isProfileLoaded = !isLoadingProfile && profileData;
+
   return (
     <div>
       <Head>
@@ -67,10 +71,9 @@ const Profile: NextPage = () => {
           <h1 className="title-user-name">{profileData?.name ? profileData.name : userName}</h1>
           <div>{matchTypeFilter}</div>
         </section>
-        {
-          !isLoadingProfile && profileData ? (
-            <Fragment>
-              <section className="main-stat-container">
+          <section className="main-stat-container">
+            {
+              isProfileLoaded ? (
                 <div>
                   <div className="main-stat-set flex-row">
                     <span className="stat-val">{profileData.role.toFixed(2)}</span>
@@ -84,8 +87,12 @@ const Profile: NextPage = () => {
                     <span className="stat-val">{profileData.kda}</span>
                     <span className="stat-desc">KDA</span>
                   </div>
-                </div>
-              </section>
+              </div>
+              ) : <MainStatSkeleton />
+            }
+          </section>
+          {
+            isProfileLoaded ? (
               <MostPlayList
                 mostLanes={profileData.mostLanes}
                 mostChampions={profileData.mostChampions}
@@ -93,9 +100,8 @@ const Profile: NextPage = () => {
                 selectedChampion={championFilter}
                 onChangeValue={onChangeMostItem}
               />
-            </Fragment>
-          ) : null
-        }
+            ) : <MostItemSkeleton />
+          }
       </main>
     </div>
   );
