@@ -11,7 +11,7 @@ const getUserProfile = async (
 ): Promise<Profile> => {
   const params = {
     matchCategory,
-    ...(lane ? { lane } : {}),
+    ...(lane ? { lane: lane.toString() } : {}),
     ...(champion ? { champion } : {}),
   };
 

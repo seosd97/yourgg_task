@@ -27,7 +27,7 @@ const MostPlayLaneItem: React.FC<Props> = ({
 
   return (
     <Link
-      href={`${router.basePath}/${router.query.userName}/?&lane=${stat.lane}`}
+      href={`${router.basePath}/${router.query.userName}/?lane=${stat.lane}`}
       shallow
     >
       <div

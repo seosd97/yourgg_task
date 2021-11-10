@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 
 import Head from 'next/head';
-import { MatchCategoryType } from '../constants';
+import { LaneType, MatchCategoryType } from '../constants';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import api from '../api';
@@ -19,12 +19,16 @@ const Profile: NextPage = () => {
     }
     return key;
   }, [router.query.matchType]);
+  const laneFilter = router?.query?.lane as LaneType ?? null;
+  const championFilter = router?.query?.champion as string ?? null;
 
   const [
     matchTypeFilter,
     setMatchTypeFilter,
   ] = useState<MatchCategoryType>(MatchCategoryType.SoloRank);
   const [profileData, setProfileData] = useState<Profile | null>(null);
+  const [isLoadingProfile, setIsLoadingProfile] = useState<boolean>(false);
+  const [, setIsUpdatingProfile] = useState<boolean>(false);
 
   useEffect(() => {
     setMatchTypeFilter(() => MatchCategoryType[matchTypeKey]);
@@ -32,12 +36,23 @@ const Profile: NextPage = () => {
 
   useEffect(() => {
     if (router.isReady) {
+      setIsLoadingProfile(true);
       (async () => {
         const data: Profile = await api.profile.getUserProfile(userName, matchTypeFilter);
         setProfileData(data);
+        setIsLoadingProfile(false);
       })();
     }
-  }, [router.isReady]);
+  }, [router.isReady, userName, matchTypeFilter]);
+
+  const onChangeMostItem = useCallback(async (lane: LaneType, champion?: string) => {
+    setIsUpdatingProfile(true);
+    const data: Profile
+      = await api.profile.getUserProfile(userName, matchTypeFilter, lane, champion);
+
+    setProfileData(data);
+    setIsUpdatingProfile(false);
+  }, [userName, matchTypeFilter]);
 
   return (
     <div>
@@ -53,7 +68,7 @@ const Profile: NextPage = () => {
           <div>{matchTypeFilter}</div>
         </section>
         {
-          profileData ? (
+          !isLoadingProfile && profileData ? (
             <Fragment>
               <section className="main-stat-container">
                 <div>
@@ -74,6 +89,9 @@ const Profile: NextPage = () => {
               <MostPlayList
                 mostLanes={profileData.mostLanes}
                 mostChampions={profileData.mostChampions}
+                selectedLane={laneFilter ?? profileData.lane}
+                selectedChampion={championFilter}
+                onChangeValue={onChangeMostItem}
               />
             </Fragment>
           ) : null
