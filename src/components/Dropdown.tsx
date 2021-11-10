@@ -1,12 +1,12 @@
-import Select, { CSSObjectWithLabel, OptionProps, StylesConfig } from 'react-select';
+import React, { useCallback, useMemo } from 'react';
+import Select, { ActionMeta, CSSObjectWithLabel, OptionProps, Options, StylesConfig } from 'react-select';
 
 import { DropdownOption } from '../../types';
-import React from 'react';
 
 interface Props {
   options: DropdownOption[],
-  onChange?: (value: string) => void,
-  defaultOption?: string,
+  onChange?: (value: DropdownOption) => void,
+  value: string,
   isDisabled?: boolean,
   width?: number,
   height?: number,
@@ -15,7 +15,7 @@ interface Props {
 const Dropdown: React.FC<Props> = ({
   options,
   onChange = () => null,
-  defaultOption = '',
+  value = '',
   isDisabled = false,
 }) => {
   const style: StylesConfig = {
@@ -52,6 +52,18 @@ const Dropdown: React.FC<Props> = ({
     }),
   };
 
+  const onChangeValue = useCallback((
+    option: unknown,
+  ) => {
+    if (onChange != null) {
+      onChange(option as DropdownOption);
+    }
+  }, [onChange]);
+
+  const selectedValue = useMemo(() => (
+    options.find(option => option.value === value)
+  ), [value]);
+
   return (
     <Select
       instanceId="react-select-instance"
@@ -59,8 +71,8 @@ const Dropdown: React.FC<Props> = ({
       options={options}
       isDisabled={isDisabled}
       isSearchable={false}
-      // onChange={onChange}
-      defaultValue={defaultOption}
+      onChange={onChangeValue}
+      value={selectedValue}
       components={{
         IndicatorSeparator: () => null,
         DropdownIndicator: () => <span className="dropdown-indicator" />,

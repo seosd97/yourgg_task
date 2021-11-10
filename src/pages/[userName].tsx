@@ -5,42 +5,34 @@ import { LaneType, MatchCategoryType } from '../constants';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import api from '../api';
-import { Profile } from '../../types';
+import { DropdownOption, Profile } from '../../types';
 import MostPlayList from '../components/MostPlayList';
 import MostItemSkeleton from '../components/MostItemSkeleton';
 import MainStatSkeleton from '../components/MainStatSkeleton';
 import Dropdown from '../components/Dropdown';
 
-const matchTypeOptions = Object.values(MatchCategoryType).map((type) => ({
-  value: type,
-  label: type,
+const matchTypeOptions = Object.values(MatchCategoryType).map((val) => ({
+  value: val,
+  label: val,
 }));
 
 const Profile: NextPage = () => {
   const router = useRouter();
 
   const userName = router?.query?.userName as string;
-  const matchTypeKey: keyof typeof MatchCategoryType = useMemo(() => {
+  const matchTypeFilter: MatchCategoryType = useMemo(() => {
     const key = router?.query?.matchType as keyof typeof MatchCategoryType;
     if (key == null || !Object.keys(MatchCategoryType).includes(key)) {
-      return 'SoloRank';
+      return MatchCategoryType.SoloRank;
     }
-    return key;
+    return MatchCategoryType[key];
   }, [router.query.matchType]);
   const laneFilter = router?.query?.lane as LaneType ?? null;
   const championFilter = router?.query?.champion as string ?? null;
 
-  const [
-    matchTypeFilter,
-    setMatchTypeFilter,
-  ] = useState<MatchCategoryType>(MatchCategoryType.SoloRank);
   const [profileData, setProfileData] = useState<Profile | null>(null);
   const [isLoadingProfile, setIsLoadingProfile] = useState<boolean>(false);
   const [, setIsUpdatingProfile] = useState<boolean>(false);
-
-  useEffect(() => {
-    setMatchTypeFilter(() => MatchCategoryType[matchTypeKey]);
-  }, [matchTypeKey]);
 
   useEffect(() => {
     if (router.isReady) {
@@ -62,6 +54,21 @@ const Profile: NextPage = () => {
     setIsUpdatingProfile(false);
   }, [userName, matchTypeFilter]);
 
+  const onChangeMatchType = useCallback((option: DropdownOption) => {
+    const params = {
+      ...(router?.query != null ? router.query : {}),
+      matchType: option.value,
+    };
+    console.log(params);
+
+    router.push({
+      pathname: `/${userName}`,
+      query: params,
+    },
+    undefined,
+    { shallow: true });
+  }, [router?.query, userName]);
+
   const isProfileLoaded = !isLoadingProfile && profileData;
 
   return (
@@ -77,7 +84,9 @@ const Profile: NextPage = () => {
           <h1 className="title-user-name">{profileData?.name ? profileData.name : userName}</h1>
           <Dropdown
             options={matchTypeOptions}
+            value={matchTypeFilter}
             isDisabled={!isProfileLoaded}
+            onChange={onChangeMatchType}
           />
         </section>
           <section className="main-stat-container">
