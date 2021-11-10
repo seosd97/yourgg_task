@@ -1,7 +1,5 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 
 const Index: NextPage = () => (
   <div>
@@ -11,7 +9,7 @@ const Index: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main>
-      정보를 찾을 수 없습니다.
+      <span style={{ alignSelf: 'center' }}>소환사 정보를 찾을 수 없습니다.</span>
     </main>
   </div>
 );
