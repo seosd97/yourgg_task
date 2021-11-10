@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { Fragment, useCallback } from 'react';
 
 import { LaneStat } from '../../types';
 import { LaneType } from '../constants';

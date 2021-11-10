@@ -123,8 +123,19 @@ main {
 }
 
 .most-play-item-container:hover, .most-play-item-container.selected {
+  position: relative;
   border: 1px dashed $border;
   border-radius: 6px;
+}
+
+.most-play-item-container.selected::after {
+  content: '';
+  position: absolute;
+  right: -25px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid $blue;
+  border-right: 7px solid transparent;
 }
 
 .most-item-icon {
