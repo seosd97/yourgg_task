@@ -38,14 +38,14 @@ const MostPlayLaneItem: React.FC<Props> = ({
         <div className="most-item-icon">
           <img src={`/images/${stat.lane}.png`} alt="lane_icon" width={20} height={20} className="img-border" />
         </div>
-        <span className="most-play-item-main flex-col">
-          <span className="most-play-item-lane-text">{stat.lane}</span>
-          <span className="most-play-item-games-text">{`${stat.matchCount} 경기`}</span>
+        <span className="most-play-item-main-col flex-col">
+          <span className="col-lane-text">{stat.lane}</span>
+          <span className="col-match-count-text">{`${stat.matchCount} 경기`}</span>
         </span>
-        <span className="most-play-item-winrate">{`${stat.winRate.toFixed(0)}%`}</span>
-        <span className="most-play-item-sub-stat">{stat.role.toFixed(2)}</span>
-        <span className="most-play-item-sub-stat">{stat.laning.toFixed(1)}</span>
-        <span className="most-play-item-sub-stat">{stat.kda}</span>
+        <span className="col-winrate col-stat-text">{`${stat.winRate.toFixed(0)}%`}</span>
+        <span className="col-sub-stat col-stat-text">{stat.role.toFixed(2)}</span>
+        <span className="col-sub-stat col-stat-text">{stat.laning.toFixed(1)}</span>
+        <span className="col-sub-stat col-stat-text">{stat.kda}</span>
       </div>
     </Link>
   );

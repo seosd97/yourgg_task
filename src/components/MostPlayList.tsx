@@ -39,12 +39,12 @@ const MostPlayList: React.FC<Props> = ({
 
   return (
     <div className="most-play-list-container flex-col">
-      <div className="flex-row">
-        <span className="most-play-list-col-title most-play-item-lane-text">최근 30경기</span>
-        <span className="most-play-list-col-winrate most-play-item-lane-text">승률</span>
-        <span className="most-play-list-col-sub-stat most-play-item-lane-text">인분</span>
-        <span className="most-play-list-col-sub-stat most-play-item-lane-text">라인전</span>
-        <span className="most-play-list-col-sub-stat most-play-item-lane-text">KDA</span>
+      <div className="most-play-list-header flex-row">
+        <span className="col-title col-text">최근 30경기</span>
+        <span className="col-winrate col-text">승률</span>
+        <span className="col-sub-stat col-text">인분</span>
+        <span className="col-sub-stat col-text">라인전</span>
+        <span className="col-sub-stat col-text">KDA</span>
       </div>
       <div>
         {

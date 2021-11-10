@@ -38,7 +38,7 @@ main {
   align-items: center;
 }
 
-.main-stat-val {
+.main-stat-set .stat-val {
   font-size: 16px;
   font-weight: bold;
   line-height: 22px;
@@ -46,7 +46,7 @@ main {
   color: $black;
 }
 
-.main-stat-desc {
+.main-stat-set .stat-desc {
   font-size: 11px;
   line-height: 15px;
   color: $black;
@@ -56,32 +56,36 @@ main {
   margin-top: 10px;
 }
 
-.most-play-list-col-title {
+.most-play-list-header {
+  margin-bottom: 3px;
+}
+
+.most-play-list-header .col-title {
   width: 106px;
   margin-left: 15px;
 }
 
-.most-play-list-col-winrate {
+.most-play-list-header .col-winrate {
   width: 43px;
   text-align: center;
 }
 
-.most-play-list-col-sub-stat {
+.most-play-list-header .col-sub-stat {
   width: 43px;
   text-align: center;
 }
 
-.most-play-list-col-text {
+.most-play-list-header .col-text {
   font-size: 10px;
   line-height: 13.63px;
   color: $black;
 }
 
-.most-play-item-main {
+.most-play-item-container .most-play-item-main-col {
   width: 63px;
 }
 
-.most-play-item-lane-text {
+.most-play-item-container .most-play-item-main-col .col-lane-text {
   font-size: 12px;
   line-height: 16.32px;
   overflow:hidden;
@@ -89,19 +93,26 @@ main {
   white-space:nowrap;
 }
 
-.most-play-item-games-text {
+.most-play-item-container .most-play-item-main-col .col-match-count-text {
   font-size: 10px;
   line-height: 13.62px;
 }
 
-.most-play-item-winrate {
+.most-play-item-container .col-winrate {
   width: 45px;
   text-align: center;
 }
 
-.most-play-item-sub-stat {
+.most-play-item-container .col-sub-stat {
   width: 42px;
   text-align: center;
+}
+
+.most-play-item-container .col-stat-text {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 17.71px;
+  color: $black;
 }
 
 .most-play-item-container {

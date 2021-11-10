@@ -73,16 +73,16 @@ const Profile: NextPage = () => {
               <section className="main-stat-container">
                 <div>
                   <div className="main-stat-set flex-row">
-                    <span className="main-stat-val">{profileData.role.toFixed(2)}</span>
-                    <span className="main-stat-desc">인분</span>
+                    <span className="stat-val">{profileData.role.toFixed(2)}</span>
+                    <span className="stat-desc">인분</span>
                   </div>
                   <div className="main-stat-set flex-row">
-                    <span className="main-stat-val">{`${profileData.laning.toFixed(1)}:${(10 - profileData.laning).toFixed(1)}`}</span>
-                    <span className="main-stat-desc">라인전</span>
+                    <span className="stat-val">{`${profileData.laning.toFixed(1)}:${(10 - profileData.laning).toFixed(1)}`}</span>
+                    <span className="stat-desc">라인전</span>
                   </div>
                   <div className="main-stat-set flex-row">
-                    <span className="main-stat-val">{profileData.kda}</span>
-                    <span className="main-stat-desc">KDA</span>
+                    <span className="stat-val">{profileData.kda}</span>
+                    <span className="stat-desc">KDA</span>
                   </div>
                 </div>
               </section>
