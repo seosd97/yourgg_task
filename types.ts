@@ -36,3 +36,8 @@ export interface ChampionStat {
   role: number;
   winRate: number;
 }
+
+export interface DropdownOption {
+  value: string,
+  label: string,
+}

@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Head from 'next/head';
 import { LaneType, MatchCategoryType } from '../constants';
@@ -9,6 +9,12 @@ import { Profile } from '../../types';
 import MostPlayList from '../components/MostPlayList';
 import MostItemSkeleton from '../components/MostItemSkeleton';
 import MainStatSkeleton from '../components/MainStatSkeleton';
+import Dropdown from '../components/Dropdown';
+
+const matchTypeOptions = Object.values(MatchCategoryType).map((type) => ({
+  value: type,
+  label: type,
+}));
 
 const Profile: NextPage = () => {
   const router = useRouter();
@@ -69,7 +75,10 @@ const Profile: NextPage = () => {
       <main className="main-container flex-col">
         <section>
           <h1 className="title-user-name">{profileData?.name ? profileData.name : userName}</h1>
-          <div>{matchTypeFilter}</div>
+          <Dropdown
+            options={matchTypeOptions}
+            isDisabled={!isProfileLoaded}
+          />
         </section>
           <section className="main-stat-container">
             {

@@ -3,6 +3,7 @@ import React from 'react';
 
 const MainStatSkeleton: React.FC = () => (
   <ContentLoader
+    uniqueKey="main-stat-skeleton"
     speed={3}
     width="100%"
     height={77}

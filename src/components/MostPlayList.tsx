@@ -1,10 +1,9 @@
 import { ChampionStat, LaneStat } from '../../types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 
 import { LaneType } from '../constants';
 import MostPlayChampionItem from './MostPlayChampionItem';
 import MostPlayLaneItem from './MostPlayLaneItem';
-import { useRouter } from 'next/router';
 
 interface Props {
   mostLanes: LaneStat[],

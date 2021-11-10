@@ -1,6 +1,5 @@
-import React, { EventHandler, MouseEventHandler, useCallback } from 'react';
+import React, { useCallback } from 'react';
 
-import Image from 'next/image';
 import { LaneStat } from '../../types';
 import { LaneType } from '../constants';
 import Link from 'next/link';
